@@ -33,11 +33,32 @@ class PropertyController extends AbstractController
      */
     public function index(): Response
     {
-        $property = $this->repository->findAllVisible();
-        $property[0]->setSold(true);
-        dump($property);
-        $this->em->flush();
         return $this->render('property/index.html.twig', [
+            'current_menu' => 'properties'
+        ]);
+    }
+
+    /**
+     * @Route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
+     * @param Property $property
+     * @return Response
+     */
+    public function show(Property $property, string $slug): Response
+    {
+        // Permet de rediriger si le slug (mon-premier-bien) est mal écrit à partir du moment où on réussi à récupérer l'id
+        if ($property->getSlug() !== $slug) {
+            return $this->redirectToRoute(
+                'property.show',
+                [
+                    'id' => $property->getId(),
+                    'slug' => $property->getSlug()
+                ],
+                301
+            );
+        }
+        // $property = $this->repository->find($id);
+        return $this->render('property/show.html.twig', [
+            'property' => $property,
             'current_menu' => 'properties'
         ]);
     }
