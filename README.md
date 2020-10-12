@@ -63,6 +63,10 @@
                 'choices' => array_flip(Property::HEAT)
         ])
     ```
+- On peut voir toutes les options dans security.yaml en entrant la commande suivante :
+```
+php bin/console config:dump-reference security
+```
 
 ### PHP :
 - array_flip : Remplace les clés par les valeurs, et les valeurs par les clés
