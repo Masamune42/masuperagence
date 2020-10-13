@@ -68,5 +68,10 @@
 php bin/console config:dump-reference security
 ```
 
+- On peut ajouter la base de données avec les fixtures au lieu de tout effacer :
+```
+php bin/console doctrine:fixtures:load --append
+```
+
 ### PHP :
 - array_flip : Remplace les clés par les valeurs, et les valeurs par les clés
