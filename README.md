@@ -1,7 +1,7 @@
 # Cours Symfony Grafikart
 
 ## Extensions utiles
-- Twig Langugage : coloration des fichiers twig
+- Twig Language : coloration des fichiers twig
 
 ## Soucis rencontrés + corrections
 - 3. Découverte de doctrine : 
