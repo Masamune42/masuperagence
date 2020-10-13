@@ -67,6 +67,10 @@
 ```
 php bin/console config:dump-reference security
 ```
+- Même exemple pour l'autowiring
+```
+php bin/console debug:autowiring
+```
 
 - On peut ajouter la base de données avec les fixtures au lieu de tout effacer :
 ```
