@@ -8,6 +8,28 @@
     - Erreur : Conflit lors de l'ajout du package slugify
     - Solution : Installer une version antérieurs : composer require cocur/slugify:3.1
 
+## Rappel architecture
+### Architecture d'un projet Symfony :
+- bin : contient les commandes que l'on peut utiliser dans la console
+- config : contient les fichiers de configurations yaml
+    - packages : contient les config des différents packages (connexion à la BDD, mailer...)
+    - __routes.yaml__ : configuration des routes
+    - __services.yaml__ : définit les services que l'on utilise
+- public : Racine du serveur (il faut pointer sur ce dossier quand on lance le serveur)
+- src : Contient le code du PHP de l'appli. Correspondant au namepsace App (pour l'autoloader)
+    - Controller : Dossier qui content les fichiers Controller qui vont récupérer les informations des requêtes SQL du Repository, récupère / contrôle la cohérence des informations (soumissions de formulaire) et les stocke en BDD. Chaque fonction d'un controller est annoté du lien l'appelant, son nom et sa méthode (GET, POST) et va rediriger vers une page.
+    - DataFixtures (package) : Dossier qui va contenir des jeux de test qui vont pouvoir être chargées automatiquement en base de données
+    - Entity : Contient toutes les classes représentants les entités (ex : user) avec pour chaque propriété des règles automatiquement créées par composer (qui seront appliqués à la BDD). On peut y ajouter des Assert (package) afin de vérifier le bon format des données avant validation dans un formulaire
+    - Form : Contient les formulaires créés par composer. On va pouvoir y ajouter / modifier les champs du formulaires se trouvant dans la fonction buildForm et leur passer des règles d'affichage (required, label, attributs)
+    - Repository : Va contenir les fichiers qui vont permettrent la communication avec la base de données via des requêtes customisables suivant les paramètres s'il y en a. Chaque fonction va renvoyer une query (requête) OU un résultat de recherche suivant le besoin.
+- templates : contient les vues / pages de l'application en twig
+- test : pour les tests unitaires et fonctionnels
+- translations : pour le multilangue
+- var : contient le cache et les logs
+- vendor : contient tous les packages téléchargés
+- __.env__ : Contient des infos comme la connexion à la base de données
+
+
 ## Tips
 ### Symfony :
 - Ajouter un style Bootstrap à une formulaire
@@ -76,6 +98,20 @@ php bin/console debug:autowiring
 ```
 php bin/console doctrine:fixtures:load --append
 ```
+
+- Attention avec Doctrine quand on crée une relation : Il faut faire attention à la classe qui est propriétaire d'une autre
+    - Le propriétaire est défini par l'annotation inversedBy : C'est sur celui-là qu'on pourra effectuer les méthodes add
+    - La classe appartenant au propriétaire aura mappedBy
+    - Si les liaisons ne font pas faites correctements, il n'y aura pas de persistance en base de données
+    - Il faut lancer la commande make:entity sur le propriétaire pour le définir sans avoir à le faire manuellement
+
+- On peut créer tout un système de CRUD (Create, Read, update, delete) autour d'une entité avec la commande + le nom de l'entité :
+```
+php bin/console make:crud
+```
+    - La création sera automatique mais on pourra modifier des fichiers comme : le Form, les templates (conseillé) et le contrôleur.
+
+
 
 ### PHP :
 - array_flip : Remplace les clés par les valeurs, et les valeurs par les clés
