@@ -99,6 +99,11 @@ php bin/console debug:autowiring
 php bin/console doctrine:fixtures:load --append
 ```
 
+- On peut annuler une migration en revenant en arrière, supprimer la mauvaise migration et en refaire une pour la recharger :
+```
+php bin/console doctrine:migrations:migrate DoctrineMigrations\Version20201014100149
+```
+
 - Attention avec Doctrine quand on crée une relation : Il faut faire attention à la classe qui est propriétaire d'une autre
     - Le propriétaire est défini par l'annotation inversedBy : C'est sur celui-là qu'on pourra effectuer les méthodes add
     - La classe appartenant au propriétaire aura mappedBy
@@ -110,7 +115,10 @@ php bin/console doctrine:fixtures:load --append
 php bin/console make:crud
 ```
     - La création sera automatique mais on pourra modifier des fichiers comme : le Form, les templates (conseillé) et le contrôleur.
-
+  
+- Doctrine, via l'ORM, peut déclencher des évènements à différentes étapes de modifications : avant / après l'enregistrement en BDD, avant / après la persistence
+  - On crée un Suscriber dans un nouveau répertoire dans **src** qui implémente : EventSubscriber et on indique dans la fonction **getSubscribedEvents()** sur quelle fonction on souscrit
+  - Dans services.yaml : On place un nouveau service qui correspond au namespace du Suscriber
 
 
 ### PHP :
