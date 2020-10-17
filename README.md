@@ -32,6 +32,13 @@
 - vendor : contient tous les packages téléchargés
 - __.env__ : Contient des infos comme la connexion à la base de données
 
+### Détails des sources (src) :
+- Controller : Un Controller par type de route, avec un propre au login
+- DataFixtures : Une Fixture par entité à remplir
+- Entity : Une entité par objet par table en BDD. On enregistre dans un objet avant de l'envoyer en BDD dans un contrôleur
+- Form : Un par formulaire à remplir dans les pages. On peut y placer des contraintes à vérifier (required, pattern...). On peut récupérer les infos du formulaire dans la requête pour faire une recherche en BDD ou modifier un élément en BDD.
+- Listener : On déclare les listeners à l'intérieur pour s'abonner à des changements sur des éléments (effacer des fichiers en cache en même temps que des éléments en BDD)
+- Repository : Un Repository par entité. On y place nos requêtes SQL personnalisées pour les appeler dans le Controller.
 
 ## Tips
 ### Symfony :

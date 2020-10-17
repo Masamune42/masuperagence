@@ -22,7 +22,7 @@ class Contact {
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Length(
+     * @Assert\Regex(
      * pattern="/[0-9]{10}/"
      * )
      */
