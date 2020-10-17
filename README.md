@@ -4,9 +4,12 @@
 - Twig Language : coloration des fichiers twig
 
 ## Soucis rencontrés + corrections
-- 3. Découverte de doctrine : 
-    - Erreur : Conflit lors de l'ajout du package slugify
-    - Solution : Installer une version antérieurs : composer require cocur/slugify:3.1
+### 3. Découverte de doctrine : 
+- Erreur : Conflit lors de l'ajout du package slugify
+- Solution : Installer une version antérieurs : composer require cocur/slugify:3.1
+### 10. Image à la une
+- Erreur : le package liip/imagine-bundle ne marche pas
+- Solution : Il faut utiliser la commande *symfony serve* ET PAS *php -S localhost:8000 -t public*
 
 ## Rappel architecture
 ### Architecture d'un projet Symfony :

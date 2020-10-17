@@ -10,7 +10,7 @@ use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
-class ImageCacheSuscriber implements EventSubscriber
+class ImageCacheSubscriber implements EventSubscriber
 {
 
     /**

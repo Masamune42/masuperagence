@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-md-8">
                 {% if property.filename %}
-                <img src="{{ vich_uploader_asset(property, 'imageFile') }}" class="card-img-top" alt="">
+                <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('medium') }}" class="card-img-top" alt="">
                 {% else %}
-                <img src="{{ '/images/properties/empty.jpg' }}" alt="" class="card-img-top">
+                <img src="{{ '/images/properties/empty.jpg' | imagine_filter('medium') }}" alt="" class="card-img-top">
                 {% endif %}
             </div>
             <div class="col-md-4">
